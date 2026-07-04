@@ -1,9 +1,364 @@
 <!DOCTYPE html>
-<html>
-<head><title>Skanda C</title></head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skanda Chandrashekar — Distributed Systems &amp; ML Infrastructure</title>
+<meta name="description" content="Skanda Chandrashekar — MSCS @ UMass Amherst. Distributed systems, ML inference infrastructure, and LLM-driven root-cause analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EF;
+    --cream-2:#F4ECE0;
+    --paper:#FFFDF9;
+    --ink:#2E2620;
+    --ink-2:#5A4A3F;
+    --ink-3:#8A7A6F;
+    --orange:#D97757;
+    --orange-deep:#B0623F;
+    --line:rgba(176,98,63,0.18);
+    --line-2:rgba(46,38,32,0.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Mono',monospace;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--orange);color:#fff}
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,239,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:0.5px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;max-width:960px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;color:var(--ink-2)}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px}
+  .nav-links{display:flex;gap:22px;font-size:12px;color:var(--ink-3);letter-spacing:0.5px}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--orange-deep)}
+
+  /* HERO */
+  .hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;border-bottom:0.5px solid var(--line)}
+  #nn-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .hero-fade{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 520px 340px at 30% 50%,var(--cream) 52%,rgba(251,246,239,0.72) 74%,rgba(251,246,239,0) 100%)}
+  .hero-content{position:relative;z-index:2;padding:40px 0}
+  .eyebrow{font-size:12px;color:var(--orange);letter-spacing:2px;margin-bottom:18px}
+  h1.name{font-size:clamp(34px,6.5vw,54px);font-weight:700;letter-spacing:-2px;line-height:1.02;color:var(--ink);margin-bottom:20px}
+  .tagline{font-size:clamp(14px,2.2vw,16px);color:var(--ink-2);max-width:460px;line-height:1.75;margin-bottom:30px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{font-size:13px;letter-spacing:0.5px;padding:11px 22px;border-radius:7px;transition:transform .15s,background .2s;display:inline-block}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:var(--orange-deep)}
+  .btn-ghost{background:rgba(255,253,249,0.7);border:1px solid var(--line);color:var(--orange-deep)}
+  .btn-ghost:hover{border-color:var(--orange)}
+  .hero-meta{position:absolute;bottom:22px;left:0;z-index:2;display:flex;gap:26px;font-size:11px;color:var(--ink-3);letter-spacing:1px;padding:0 28px;max-width:960px;margin:0 auto;right:0}
+  #state-label{color:var(--orange-deep)}
+
+  /* SECTIONS */
+  section.block{padding:72px 0;border-bottom:0.5px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:38px}
+  .sec-num{font-size:12px;color:var(--orange);letter-spacing:1px}
+  .sec-title{font-size:22px;font-weight:700;letter-spacing:-0.5px}
+  .sec-sub{font-size:13px;color:var(--ink-3);margin-left:auto}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:var(--paper);border:0.5px solid var(--line-2);border-radius:12px;padding:22px;transition:transform .18s,border-color .2s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);border-color:var(--line)}
+  .card-icon{width:34px;height:34px;border-radius:8px;background:var(--cream-2);color:var(--orange-deep);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+  .card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+  .card p{font-size:13px;color:var(--ink-2);line-height:1.6;margin-bottom:14px;flex:1}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .tag{font-size:11px;background:var(--cream);border:0.5px solid var(--line-2);padding:3px 9px;border-radius:6px;color:var(--ink-3)}
+  .card-links{display:flex;gap:14px;font-size:12px;color:var(--orange-deep)}
+  .card-links a{border-bottom:1px solid transparent;transition:border-color .2s}
+  .card-links a:hover{border-color:var(--orange)}
+
+  /* TIMELINE */
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .t-row{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:22px 0;border-top:0.5px solid var(--line-2)}
+  .t-row:first-child{border-top:none}
+  .t-when{font-size:12px;color:var(--orange-deep);letter-spacing:0.5px;padding-top:2px}
+  .t-what h3{font-size:15px;font-weight:700;margin-bottom:6px}
+  .t-what .role{font-size:12px;color:var(--ink-3);margin-bottom:10px}
+  .t-what p{font-size:13px;color:var(--ink-2);line-height:1.65}
+  .t-what ul{list-style:none;margin-top:8px}
+  .t-what li{font-size:13px;color:var(--ink-2);padding-left:16px;position:relative;margin-bottom:4px}
+  .t-what li::before{content:"›";position:absolute;left:0;color:var(--orange)}
+
+  /* CONTACT */
+  .contact{text-align:center;padding:88px 0}
+  .contact h2{font-size:clamp(26px,5vw,40px);font-weight:700;letter-spacing:-1px;margin-bottom:16px}
+  .contact p{font-size:14px;color:var(--ink-2);max-width:440px;margin:0 auto 28px;line-height:1.7}
+  .social{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .social a{font-size:13px;padding:10px 20px;border:0.5px solid var(--line);border-radius:7px;color:var(--ink-2);transition:all .2s;display:flex;align-items:center;gap:8px}
+  .social a:hover{border-color:var(--orange);color:var(--orange-deep)}
+
+  footer{padding:30px 0;text-align:center;font-size:11px;color:var(--ink-3);letter-spacing:1px}
+
+  @media (max-width:640px){
+    .nav-links{gap:14px;font-size:11px}
+    .t-row{grid-template-columns:1fr;gap:6px}
+    .hero-meta{flex-direction:column;gap:6px;bottom:14px}
+    .sec-sub{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #nn-canvas{display:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
 <body>
-  <h1>Skanda C</h1>
-  <p>MSCS @ UMass Amherst · Distributed Systems · ML Systems</p>
-  <a href="https://github.com/skandac">GitHub</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="mark">✳</span>skanda.dev</a>
+    <div class="nav-links">
+      <a href="#work">work</a>
+      <a href="#research">research</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="nn-canvas"></canvas>
+  <div class="hero-fade"></div>
+  <div class="wrap hero-content">
+    <p class="eyebrow">// MSCS · UMASS AMHERST · 2027</p>
+    <h1 class="name">Skanda<br>Chandrashekar</h1>
+    <p class="tagline">I build distributed systems, ML inference infrastructure, and tools for LLM-driven root-cause analysis of production systems.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn btn-primary">view_work →</a>
+      <a href="skanda_resume.pdf" class="btn btn-ghost" target="_blank">resume.pdf</a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span id="state-label">state: training</span>
+    <a href="https://github.com/skandac" target="_blank">github.com/skandac</a>
+  </div>
+</header>
+
+<main>
+
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <span class="sec-title">Selected work</span>
+      <span class="sec-sub">systems · ml infra · research</span>
+    </div>
+    <div class="proj-grid">
+
+      <article class="card">
+        <div class="card-icon">⎇</div>
+        <h3>CausalLog</h3>
+        <p>A causal-graph-indexed query layer for LLM-driven root-cause analysis of distributed system logs. Pruned causal retrieval hits 100% recall at ~1,244 tokens where dump strategies degrade toward 25% at 128k tokens.</p>
+        <div class="tags"><span class="tag">PLASMA Lab</span><span class="tag">ClickHouse</span><span class="tag">DuckDB</span><span class="tag">LLM</span></div>
+        <div class="card-links"><a href="#research">details →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">◈</div>
+        <h3>Distributed Job Scheduler</h3>
+        <p>A distributed job scheduler with leader election, failure detection, and automatic task reassignment for zero job loss during node failures. Priority-aware engine hitting sub-2s latency for 1,000+ concurrent jobs.</p>
+        <div class="tags"><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">gRPC</span><span class="tag">FastAPI</span></div>
+        <div class="card-links"><a href="https://github.com/skandac" target="_blank">code →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">⧉</div>
+        <h3>Real-Time GPU Inference Router</h3>
+        <p>A thread-safe high-performance C++ request router with dynamic batching and a distributed serving layer that load-balances across GPU-backed model servers, improving utilization and throughput under concurrent load.</p>
+        <div class="tags"><span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span></div>
+        <div class="card-links"><a href="https://github.com/skandac" target="_blank">code →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">⌬</div>
+        <h3>NEO — GPU-CPU Offloading for LLM Inference</h3>
+        <p>An implementation of NEO's asymmetric GPU-CPU pipelining with load-aware scheduling to offload KV-cache and attention compute to CPU. INT8 quantization cuts memory footprint, lifting throughput up to 35% within latency SLAs.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">PyTorch</span></div>
+        <div class="card-links"><a href="https://github.com/skandac" target="_blank">code →</a></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Research</span>
+      <span class="sec-sub">plasma lab · umass amherst</span>
+    </div>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-when">2026 →</div>
+        <div class="t-what">
+          <h3>CausalLog — causal memory for RCA agents</h3>
+          <div class="role">PLASMA Lab · advised by Prof. Emery Berger</div>
+          <p>Extending debugging agents toward distributed, live-log-driven root-cause analysis, where a causal graph governs agent memory eviction instead of recency.</p>
+          <ul>
+            <li>Causal graph BFS operators over a multi-service fault harness</li>
+            <li>Fleet-scale evaluation with pool-exhaustion cascades</li>
+            <li>Real LLM evaluation showing pruned retrieval beats context dumps</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">IEEE</div>
+        <div class="t-what">
+          <h3>Secure Hashing using BCrypt for Cryptographic Applications</h3>
+          <div class="role">IEEE International Conference · first author</div>
+          <p>Peer-reviewed work on secure hashing with BCrypt for cryptographic applications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Experience</span>
+      <span class="sec-sub">industry</span>
+    </div>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-when">Apr 2026 →</div>
+        <div class="t-what">
+          <h3>SpikedAI · Dublin, CA</h3>
+          <div class="role">AI Software Engineer Intern</div>
+          <p>Shipped a full-stack async GenAI document intelligence assistant (React/TypeScript + FastAPI + pgvector) with multi-mode LLM routing and multi-provider failover, cutting rep meeting prep from 30 minutes to a 2-minute default (15×).</p>
+          <ul>
+            <li>Rebuilt ingestion with map-reduce extraction across parallel LLM workers — 20 min → 2 min (10×)</li>
+            <li>Optimized RAG with an HNSW pgvector index: p95 200ms, +40% retrieval accuracy</li>
+            <li>Owned GCP production infra (Cloud Run, Cloud Armor WAF, CI/CD), deploys from hours to minutes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">2022–2025</div>
+        <div class="t-what">
+          <h3>Oracle · Bengaluru</h3>
+          <div class="role">Technical Analyst — carrier-grade Session Border Controllers</div>
+          <p>Diagnosed 30+ monthly Sev-1 to Sev-3 incidents on Acme Packet SBC infrastructure handling 20k–100k concurrent SIP sessions for EMEA enterprise providers, with on-call production outage response.</p>
+          <ul>
+            <li>Debugged session failures across TCP/UDP, TLS/SSL, QoS, SIP signaling, and RTP media</li>
+            <li>Built automated log-analysis + root-cause workflows, cutting resolution time 50%</li>
+            <li>Engineered local distributed SBC environments (Python/Bash/XML), −40% troubleshooting time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's build something.</h2>
+    <p>Open to software engineering roles in distributed systems, infrastructure, and ML systems.</p>
+    <div class="social">
+      <a href="mailto:skanda473@gmail.com">✉ email</a>
+      <a href="https://github.com/skandac" target="_blank">◈ github</a>
+      <a href="https://www.linkedin.com/in/skandac/" target="_blank">in linkedin</a>
+      <a href="skanda_resume.pdf" target="_blank">↧ resume</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 skanda chandrashekar · built with html + a little canvas</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('nn-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, DPR = Math.min(window.devicePixelRatio||1, 2);
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W*DPR; canvas.height = H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const layers = [3,5,5,3];
+  const nodes = [];
+  layers.forEach((count, li)=>{ for(let i=0;i<count;i++) nodes.push({layer:li,idx:i,count}); });
+  function pos(n){
+    const x = W*0.50 + (W*0.46)*(n.layer/(layers.length-1));
+    const padY = 72;
+    const y = padY + (H - padY*2)*(n.count===1?0.5:(n.idx/(n.count-1)));
+    return {x,y};
+  }
+  const edges = [];
+  nodes.forEach(a=>nodes.forEach(b=>{ if(b.layer===a.layer+1) edges.push({a,b}); }));
+
+  let t=0, state=0, transition=0;
+  const label = document.getElementById('state-label');
+  const names = ['state: training','state: inference'];
+
+  function draw(){
+    t += 0.016;
+    transition += (state - transition)*0.04;
+    ctx.clearRect(0,0,W,H);
+
+    edges.forEach((e,i)=>{
+      const pa=pos(e.a), pb=pos(e.b);
+      const fire = Math.sin(t*2 + i*0.7)*0.5+0.5;
+      const active = fire*(0.35 + transition*0.55);
+      ctx.strokeStyle = `rgba(217,119,87,${0.06 + active*0.28})`;
+      ctx.lineWidth = 0.6 + active*1.1;
+      ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke();
+      const pulse = (t*0.5 + i*0.13)%1;
+      const px = pa.x+(pb.x-pa.x)*pulse, py = pa.y+(pb.y-pa.y)*pulse;
+      ctx.fillStyle = `rgba(217,119,87,${(1-pulse)*active*0.85})`;
+      ctx.beginPath(); ctx.arc(px,py,2,0,Math.PI*2); ctx.fill();
+    });
+
+    nodes.forEach((n,i)=>{
+      const p=pos(n);
+      const glow = Math.sin(t*2.5 + i*0.9)*0.5+0.5;
+      const r = 5 + glow*2.5*(0.5+transition*0.5);
+      ctx.fillStyle = 'rgba(251,246,239,1)';
+      ctx.beginPath(); ctx.arc(p.x,p.y,r+3,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle = `rgba(217,119,87,${0.5 + glow*0.4})`;
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2); ctx.fill();
+      ctx.strokeStyle = 'rgba(176,98,63,0.45)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2); ctx.stroke();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce){
+    draw();
+    setInterval(()=>{ state = state===0?1:0; if(label) label.textContent = names[state]; }, 3200);
+  }
+})();
+</script>
 </body>
 </html>
