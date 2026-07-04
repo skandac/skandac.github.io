@@ -178,7 +178,7 @@
         <h3>Distributed Job Scheduler</h3>
         <p>A distributed job scheduler with leader election, failure detection, and automatic task reassignment for zero job loss during node failures. Priority-aware engine hitting sub-2s latency for 1,000+ concurrent jobs.</p>
         <div class="tags"><span class="tag">Kafka</span><span class="tag">Redis</span><span class="tag">gRPC</span><span class="tag">FastAPI</span></div>
-        <div class="card-links"><a href="https://github.com/skandac" target="_blank">code →</a></div>
+        <div class="card-links"><a href="https://github.com/skandac/distributed-job-scheduler" target="_blank">code →</a></div>
       </article>
 
       <article class="card">
@@ -194,7 +194,7 @@
         <h3>NEO — GPU-CPU Offloading for LLM Inference</h3>
         <p>An implementation of NEO's asymmetric GPU-CPU pipelining with load-aware scheduling to offload KV-cache and attention compute to CPU. INT8 quantization cuts memory footprint, lifting throughput up to 35% within latency SLAs.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">PyTorch</span></div>
-        <div class="card-links"><a href="https://github.com/skandac" target="_blank">code →</a></div>
+        <div class="card-links"><a href="https://github.com/skandac/CPU-GPU-offloading-KV-Cache" target="_blank">code →</a></div>
       </article>
 
     </div>
@@ -214,8 +214,8 @@
         <div class="t-what">
           <h3>CausalLog — causal memory for RCA agents</h3>
           <div class="role">PLASMA Lab · advised by Prof. Emery Berger</div>
-          <p>Extending debugging agents toward distributed, live-log-driven root-cause analysis, where a causal graph governs agent memory eviction instead of recency.</p>
           <ul>
+            <li>Extending debugging agents toward distributed, live-log-driven root-cause analysis, where a causal graph governs agent memory eviction instead of recency</li>
             <li>Causal graph BFS operators over a multi-service fault harness</li>
             <li>Fleet-scale evaluation with pool-exhaustion cascades</li>
             <li>Real LLM evaluation showing pruned retrieval beats context dumps</li>
@@ -247,11 +247,11 @@
         <div class="t-what">
           <h3>SpikedAI · Dublin, CA</h3>
           <div class="role">AI Software Engineer Intern</div>
-          <p>Shipped a full-stack async GenAI document intelligence assistant (React/TypeScript + FastAPI + pgvector) with multi-mode LLM routing and multi-provider failover, cutting rep meeting prep from 30 minutes to a 2-minute default (15×).</p>
           <ul>
-            <li>Rebuilt ingestion with map-reduce extraction across parallel LLM workers — 20 min → 2 min (10×)</li>
-            <li>Optimized RAG with an HNSW pgvector index: p95 200ms, +40% retrieval accuracy</li>
-            <li>Owned GCP production infra (Cloud Run, Cloud Armor WAF, CI/CD), deploys from hours to minutes</li>
+            <li>Shipped a full-stack async GenAI document intelligence assistant (React/TypeScript + FastAPI + pgvector) with multi-mode LLM routing (doc-grounded, web-augmented, agenda alignment) and multi-provider failover, cutting rep meeting prep from 30 minutes to a 2-minute default (15×)</li>
+            <li>Rebuilt ingestion pipeline with map-reduce document extraction across parallel LLM workers (asyncio.gather + bounded concurrency) and rank-merge aggregation — 20 min → 2 min (10×)</li>
+            <li>Optimized RAG retrieval with HNSW pgvector index: p95 query latency 200ms, +40% retrieval accuracy over baseline; cached query embeddings and results in Redis to eliminate redundant vector searches</li>
+            <li>Owned GCP production infrastructure (Cloud Run, multi-stage Docker, autoscaling, Cloud Armor WAF for SOC 2 compliance); automated CI/CD via GitHub Actions, deploy time from hours to minutes</li>
           </ul>
         </div>
       </div>
@@ -260,11 +260,12 @@
         <div class="t-what">
           <h3>Oracle · Bengaluru</h3>
           <div class="role">Technical Analyst — carrier-grade Session Border Controllers</div>
-          <p>Diagnosed 30+ monthly Sev-1 to Sev-3 incidents on Acme Packet SBC infrastructure handling 20k–100k concurrent SIP sessions for EMEA enterprise providers, with on-call production outage response.</p>
           <ul>
-            <li>Debugged session failures across TCP/UDP, TLS/SSL, QoS, SIP signaling, and RTP media</li>
-            <li>Built automated log-analysis + root-cause workflows, cutting resolution time 50%</li>
-            <li>Engineered local distributed SBC environments (Python/Bash/XML), −40% troubleshooting time</li>
+            <li>Diagnosed and resolved 30+ monthly Sev-1 to Sev-3 incidents on carrier-grade Oracle Acme Packet SBC infrastructure handling 20k–100k concurrent SIP sessions for EMEA enterprise providers, with on-call production outage response</li>
+            <li>Engineered distributed SBC production environments locally (Python/Bash/XML automation) across SBC and OCOM systems — troubleshooting time −40% for load-balancing, TLS/SRTP, and heap-memory failures</li>
+            <li>Debugged distributed session failures across TCP/UDP, TLS/SSL, QoS, SIP signaling, and RTP media plane by correlating logs and traces across clustered, load-balanced VoIP infrastructure</li>
+            <li>Developed automated log-analysis and root-cause workflows for heap memory leaks, VM crashes, and failover instability — incident resolution time −50%</li>
+            <li>Owned functional and regression validation pipelines for SBC software patches across HA and failover scenarios, accelerating patch release cycles by 20%</li>
           </ul>
         </div>
       </div>
