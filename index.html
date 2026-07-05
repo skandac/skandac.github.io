@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#FBF6EF;
-    --cream-2:#F4ECE0;
-    --paper:#FFFDF9;
-    --ink:#2E2620;
-    --ink-2:#5A4A3F;
-    --ink-3:#8A7A6F;
+    --cream:#F4EBD7;
+    --cream-2:#EADFC5;
+    --paper:#FFFDF6;
+    --ink:#241C15;
+    --ink-2:#3F3428;
+    --ink-3:#6E5D50;
     --orange:#D97757;
-    --orange-deep:#B0623F;
-    --line:rgba(176,98,63,0.18);
-    --line-2:rgba(46,38,32,0.10);
+    --orange-deep:#A45732;
+    --line:rgba(164,87,50,0.22);
+    --line-2:rgba(36,28,21,0.12);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -39,7 +39,7 @@
   /* NAV */
   nav{
     position:sticky;top:0;z-index:50;
-    background:rgba(251,246,239,0.85);
+    background:rgba(244,235,215,0.88);
     backdrop-filter:blur(8px);
     border-bottom:0.5px solid var(--line);
   }
@@ -53,7 +53,7 @@
   /* HERO */
   .hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;border-bottom:0.5px solid var(--line)}
   #nn-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-  .hero-fade{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 520px 340px at 30% 50%,var(--cream) 52%,rgba(251,246,239,0.72) 74%,rgba(251,246,239,0) 100%)}
+  .hero-fade{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 520px 340px at 30% 50%,var(--cream) 52%,rgba(244,235,215,0.72) 74%,rgba(244,235,215,0) 100%)}
   .hero-content{position:relative;z-index:2;padding:40px 0}
   .eyebrow{font-size:12px;color:var(--orange);letter-spacing:2px;margin-bottom:18px}
   h1.name{font-size:clamp(34px,6.5vw,54px);font-weight:700;letter-spacing:-2px;line-height:1.02;color:var(--ink);margin-bottom:20px}
@@ -93,12 +93,17 @@
   .t-row{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:22px 0;border-top:0.5px solid var(--line-2)}
   .t-row:first-child{border-top:none}
   .t-when{font-size:12px;color:var(--orange-deep);letter-spacing:0.5px;padding-top:2px}
-  .t-what h3{font-size:15px;font-weight:700;margin-bottom:6px}
-  .t-what .role{font-size:12px;color:var(--ink-3);margin-bottom:10px}
+  .t-what h3{font-size:17px;font-weight:700;margin-bottom:4px;letter-spacing:-0.3px;color:var(--ink)}
+  .t-what h3 .at{color:var(--ink-3);font-weight:400;margin:0 4px}
+  .t-what h3 .loc{color:var(--ink-3);font-weight:400;font-size:13px}
+  .t-what .role{font-size:12px;color:var(--orange-deep);margin-bottom:12px;font-style:italic;letter-spacing:0.2px}
+  .t-what .t-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+  .t-what .t-tags .tag{font-size:10.5px;background:var(--cream);border:0.5px solid var(--line-2);padding:3px 9px;border-radius:6px;color:var(--ink-3)}
   .t-what p{font-size:13px;color:var(--ink-2);line-height:1.65}
-  .t-what ul{list-style:none;margin-top:8px}
-  .t-what li{font-size:13px;color:var(--ink-2);padding-left:16px;position:relative;margin-bottom:4px}
+  .t-what ul{list-style:none;margin-top:4px}
+  .t-what li{font-size:13px;color:var(--ink-2);padding-left:16px;position:relative;margin-bottom:6px;line-height:1.65}
   .t-what li::before{content:"›";position:absolute;left:0;color:var(--orange)}
+  .metric{color:var(--orange-deep);font-weight:700}
 
   /* CONTACT */
   .contact{text-align:center;padding:88px 0}
@@ -128,9 +133,9 @@
   <div class="nav-inner">
     <a href="#top" class="logo"><span class="mark">✳</span>skanda.dev</a>
     <div class="nav-links">
-      <a href="#work">work</a>
-      <a href="#research">research</a>
       <a href="#experience">experience</a>
+      <a href="#research">research</a>
+      <a href="#work">projects</a>
       <a href="#contact">contact</a>
     </div>
   </div>
@@ -144,7 +149,7 @@
     <h1 class="name">Skanda<br>Chandrashekar</h1>
     <p class="tagline">I build distributed systems, ML inference infrastructure, and tools for LLM-driven root-cause analysis of production systems.</p>
     <div class="cta-row">
-      <a href="#work" class="btn btn-primary">view_work →</a>
+      <a href="#experience" class="btn btn-primary">view_experience →</a>
       <a href="skanda_resume.pdf" class="btn btn-ghost" target="_blank">resume.pdf</a>
     </div>
   </div>
@@ -156,12 +161,107 @@
 
 <main>
 
-<section class="block" id="work">
+<section class="block" id="experience">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">01</span>
-      <span class="sec-title">Selected work</span>
-      <span class="sec-sub">systems · ml infra · research</span>
+      <span class="sec-title">Experience</span>
+      <span class="sec-sub">industry</span>
+    </div>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-when">Apr 2026 →</div>
+        <div class="t-what">
+          <h3>SpikedAI <span class="at">/</span> <span class="loc">Dublin, CA</span></h3>
+          <div class="role">AI Software Engineer Intern</div>
+          <div class="t-tags">
+            <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span><span class="tag">pgvector</span><span class="tag">Redis</span><span class="tag">GCP</span><span class="tag">Docker</span>
+          </div>
+          <ul>
+            <li>Shipped a full-stack async GenAI document intelligence assistant (React/TypeScript + FastAPI + pgvector) with multi-mode LLM routing (doc-grounded, web-augmented, agenda alignment) and multi-provider failover, cutting rep meeting prep from 30 minutes to a 2-minute default <span class="metric">(15×)</span></li>
+            <li>Rebuilt ingestion pipeline with map-reduce document extraction across parallel LLM workers (asyncio.gather + bounded concurrency) and rank-merge aggregation — <span class="metric">20 min → 2 min (10×)</span></li>
+            <li>Optimized RAG retrieval with HNSW pgvector index: p95 query latency <span class="metric">200ms</span>, <span class="metric">+40%</span> retrieval accuracy over baseline; cached query embeddings and results in Redis to eliminate redundant vector searches</li>
+            <li>Owned GCP production infrastructure (Cloud Run, multi-stage Docker, autoscaling, Cloud Armor WAF for SOC 2 compliance); automated CI/CD via GitHub Actions, deploy time <span class="metric">hours → minutes</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">2022–2025</div>
+        <div class="t-what">
+          <h3>Oracle <span class="at">/</span> <span class="loc">Bengaluru, India</span></h3>
+          <div class="role">Technical Analyst — carrier-grade Session Border Controllers</div>
+          <div class="t-tags">
+            <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Linux</span><span class="tag">SIP</span><span class="tag">TLS/SRTP</span><span class="tag">VoIP</span><span class="tag">Wireshark</span>
+          </div>
+          <ul>
+            <li>Diagnosed and resolved <span class="metric">30+ monthly</span> Sev-1 to Sev-3 incidents on carrier-grade Oracle Acme Packet SBC infrastructure handling <span class="metric">20k–100k concurrent SIP sessions</span> for EMEA enterprise providers, with on-call production outage response</li>
+            <li>Engineered distributed SBC production environments locally (Python/Bash/XML automation) across SBC and OCOM systems — troubleshooting time <span class="metric">−40%</span> for load-balancing, TLS/SRTP, and heap-memory failures</li>
+            <li>Debugged distributed session failures across TCP/UDP, TLS/SSL, QoS, SIP signaling, and RTP media plane by correlating logs and traces across clustered, load-balanced VoIP infrastructure</li>
+            <li>Developed automated log-analysis and root-cause workflows for heap memory leaks, VM crashes, and failover instability — incident resolution time <span class="metric">−50%</span></li>
+            <li>Owned functional and regression validation pipelines for SBC software patches across HA and failover scenarios, accelerating patch release cycles by <span class="metric">20%</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">Aug–Sep 2020</div>
+        <div class="t-what">
+          <h3>Cisco <span class="at">/</span> <span class="loc">Bengaluru, India</span></h3>
+          <div class="role">Student Intern — real-time video analytics for smart traffic</div>
+          <div class="t-tags">
+            <span class="tag">Python</span><span class="tag">YOLOv5</span><span class="tag">KNN</span><span class="tag">OpenCV</span><span class="tag">Haar Cascades</span><span class="tag">Computer Vision</span>
+          </div>
+          <ul>
+            <li>Designed a Python-based smart parking management system integrating YOLOv5, KNN, and Haar-cascade preprocessing for vehicle detection, license-plate recognition, and predictive analytics — <span class="metric">90% accuracy</span> across <span class="metric">10K+ images</span></li>
+            <li>Built the real-time video-analytics pipeline end-to-end (ingest → detect → classify → report) as part of a summer program on intelligent traffic management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Research</span>
+      <span class="sec-sub">plasma lab · umass amherst</span>
+    </div>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-when">2026 →</div>
+        <div class="t-what">
+          <h3>CausalLog <span class="at">/</span> <span class="loc">causal memory for RCA agents</span></h3>
+          <div class="role">PLASMA Lab · advised by Prof. Emery Berger</div>
+          <div class="t-tags">
+            <span class="tag">ClickHouse</span><span class="tag">DuckDB</span><span class="tag">LLM Agents</span><span class="tag">Causal Graphs</span><span class="tag">RCA</span>
+          </div>
+          <ul>
+            <li>Extending debugging agents toward distributed, live-log-driven root-cause analysis, where a causal graph governs agent memory eviction instead of recency</li>
+            <li>Causal graph BFS operators over a multi-service fault harness</li>
+            <li>Fleet-scale evaluation with pool-exhaustion cascades</li>
+            <li>Real LLM evaluation showing pruned retrieval beats context dumps — <span class="metric">100% recall at ~1,244 tokens</span> vs <span class="metric">~25% at 128k</span> for dump strategies</li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-when">IEEE</div>
+        <div class="t-what">
+          <h3>Secure Hashing using BCrypt for Cryptographic Applications</h3>
+          <div class="role">IEEE International Conference · first author</div>
+          <p>Peer-reviewed work on secure hashing with BCrypt for cryptographic applications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Selected projects</span>
+      <span class="sec-sub">systems · ml infra</span>
     </div>
     <div class="proj-grid">
 
@@ -197,78 +297,6 @@
         <div class="card-links"><a href="https://github.com/skandac/CPU-GPU-offloading-KV-Cache" target="_blank">code →</a></div>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<section class="block" id="research">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-num">02</span>
-      <span class="sec-title">Research</span>
-      <span class="sec-sub">plasma lab · umass amherst</span>
-    </div>
-    <div class="timeline">
-      <div class="t-row">
-        <div class="t-when">2026 →</div>
-        <div class="t-what">
-          <h3>CausalLog — causal memory for RCA agents</h3>
-          <div class="role">PLASMA Lab · advised by Prof. Emery Berger</div>
-          <ul>
-            <li>Extending debugging agents toward distributed, live-log-driven root-cause analysis, where a causal graph governs agent memory eviction instead of recency</li>
-            <li>Causal graph BFS operators over a multi-service fault harness</li>
-            <li>Fleet-scale evaluation with pool-exhaustion cascades</li>
-            <li>Real LLM evaluation showing pruned retrieval beats context dumps</li>
-          </ul>
-        </div>
-      </div>
-      <div class="t-row">
-        <div class="t-when">IEEE</div>
-        <div class="t-what">
-          <h3>Secure Hashing using BCrypt for Cryptographic Applications</h3>
-          <div class="role">IEEE International Conference · first author</div>
-          <p>Peer-reviewed work on secure hashing with BCrypt for cryptographic applications.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="experience">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-num">03</span>
-      <span class="sec-title">Experience</span>
-      <span class="sec-sub">industry</span>
-    </div>
-    <div class="timeline">
-      <div class="t-row">
-        <div class="t-when">Apr 2026 →</div>
-        <div class="t-what">
-          <h3>SpikedAI · Dublin, CA</h3>
-          <div class="role">AI Software Engineer Intern</div>
-          <ul>
-            <li>Shipped a full-stack async GenAI document intelligence assistant (React/TypeScript + FastAPI + pgvector) with multi-mode LLM routing (doc-grounded, web-augmented, agenda alignment) and multi-provider failover, cutting rep meeting prep from 30 minutes to a 2-minute default (15×)</li>
-            <li>Rebuilt ingestion pipeline with map-reduce document extraction across parallel LLM workers (asyncio.gather + bounded concurrency) and rank-merge aggregation — 20 min → 2 min (10×)</li>
-            <li>Optimized RAG retrieval with HNSW pgvector index: p95 query latency 200ms, +40% retrieval accuracy over baseline; cached query embeddings and results in Redis to eliminate redundant vector searches</li>
-            <li>Owned GCP production infrastructure (Cloud Run, multi-stage Docker, autoscaling, Cloud Armor WAF for SOC 2 compliance); automated CI/CD via GitHub Actions, deploy time from hours to minutes</li>
-          </ul>
-        </div>
-      </div>
-      <div class="t-row">
-        <div class="t-when">2022–2025</div>
-        <div class="t-what">
-          <h3>Oracle · Bengaluru</h3>
-          <div class="role">Technical Analyst — carrier-grade Session Border Controllers</div>
-          <ul>
-            <li>Diagnosed and resolved 30+ monthly Sev-1 to Sev-3 incidents on carrier-grade Oracle Acme Packet SBC infrastructure handling 20k–100k concurrent SIP sessions for EMEA enterprise providers, with on-call production outage response</li>
-            <li>Engineered distributed SBC production environments locally (Python/Bash/XML automation) across SBC and OCOM systems — troubleshooting time −40% for load-balancing, TLS/SRTP, and heap-memory failures</li>
-            <li>Debugged distributed session failures across TCP/UDP, TLS/SSL, QoS, SIP signaling, and RTP media plane by correlating logs and traces across clustered, load-balanced VoIP infrastructure</li>
-            <li>Developed automated log-analysis and root-cause workflows for heap memory leaks, VM crashes, and failover instability — incident resolution time −50%</li>
-            <li>Owned functional and regression validation pipelines for SBC software patches across HA and failover scenarios, accelerating patch release cycles by 20%</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -343,7 +371,7 @@
       const p=pos(n);
       const glow = Math.sin(t*2.5 + i*0.9)*0.5+0.5;
       const r = 5 + glow*2.5*(0.5+transition*0.5);
-      ctx.fillStyle = 'rgba(251,246,239,1)';
+      ctx.fillStyle = 'rgba(244,235,215,1)';
       ctx.beginPath(); ctx.arc(p.x,p.y,r+3,0,Math.PI*2); ctx.fill();
       ctx.fillStyle = `rgba(217,119,87,${0.5 + glow*0.4})`;
       ctx.beginPath(); ctx.arc(p.x,p.y,r,0,Math.PI*2); ctx.fill();
