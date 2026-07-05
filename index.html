@@ -94,6 +94,8 @@
   .t-row:first-child{border-top:none}
   .t-when{font-size:12px;color:var(--orange-deep);letter-spacing:0.5px;padding-top:2px}
   .t-what h3{font-size:17px;font-weight:700;margin-bottom:4px;letter-spacing:-0.3px;color:var(--ink)}
+  .t-what h3 a{color:inherit;border-bottom:1px solid transparent;transition:border-color .2s}
+  .t-what h3 a:hover{border-bottom-color:var(--orange)}
   .t-what h3 .at{color:var(--ink-3);font-weight:400;margin:0 4px}
   .t-what h3 .loc{color:var(--ink-3);font-weight:400;font-size:13px}
   .t-what .role{font-size:12px;color:var(--orange-deep);margin-bottom:12px;font-style:italic;letter-spacing:0.2px}
@@ -245,11 +247,18 @@
         </div>
       </div>
       <div class="t-row">
-        <div class="t-when">IEEE</div>
+        <div class="t-when">IEEE · 2022</div>
         <div class="t-what">
-          <h3>Secure Hashing using BCrypt for Cryptographic Applications</h3>
-          <div class="role">IEEE International Conference · first author</div>
-          <p>Peer-reviewed work on secure hashing with BCrypt for cryptographic applications.</p>
+          <h3><a href="https://ieeexplore.ieee.org/document/10126956" target="_blank">Secure Hashing using BCrypt for Cryptographic Applications</a></h3>
+          <div class="role">IEEE NKCon 2022 · first author (with B. Srivatsa, B. S. Premananda)</div>
+          <div class="t-tags">
+            <span class="tag">Cryptography</span><span class="tag">BCrypt</span><span class="tag">SHA-256</span><span class="tag">Password Security</span><span class="tag">Rainbow Tables</span>
+          </div>
+          <ul>
+            <li>Compared BCrypt, SHA-256, and MD5 across performance and reversal-attack resistance — demonstrated BCrypt's work-factor design outperforms fast hashes for password-storage security</li>
+            <li>Attempted Rainbow-Table reversal on each hash family and tabulated recovery difficulty; showed SHA-256's speed makes it susceptible to brute-force while BCrypt remains robust</li>
+            <li><span class="metric">9 citations</span> · <span class="metric">1,000+ full-text views</span> on IEEE Xplore · <a href="https://ieeexplore.ieee.org/document/10126956" target="_blank" style="color:var(--orange-deep);border-bottom:1px solid var(--line)">read paper →</a></li>
+          </ul>
         </div>
       </div>
     </div>
